@@ -16,6 +16,13 @@ describe('Gilded Rose', function () {
     });
 
 
+    it('should decrease quality by double once sellIn date has passed.', function() {
+        const gildedRose = new GildedRose([ new Item('My Item', 0, 20)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).to.equal(18);
+    });
+
+
     // Tests for invalid bound values on quality and sellIn
 
     it('Quality should not be below 0 (never be negative).', function() {
@@ -36,5 +43,14 @@ describe('Gilded Rose', function () {
         expect(items[0].sellIn).to.equal(80);
     });
 
+
+    it('aged brie quality should increase', function() {
+        const gildedRose = new GildedRose([ new Item('Aged Brie', 4, 20) ]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).to.equal(21);
+    });
+
+
+   // Special rules for passes...  
 
 });
