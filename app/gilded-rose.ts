@@ -18,55 +18,29 @@ export class GildedRose {
     }
 
     updateQuality() {
-        for (let i = 0; i < this.items.length; i++) {
-            const currentItem = this.items[i];
 
 
-            if (currentItem.name != 'Aged Brie' && currentItem.name != 'Backstage passes to a TAFKAL80ETC concert') {
-                if (currentItem.quality > 0) {
-                    if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
-                        currentItem.quality = currentItem.quality - 1
-                    }
-                }
-            } else {
-                if (currentItem.quality < 50) {
-                    currentItem.quality = currentItem.quality + 1
-                    if (currentItem.name == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if (currentItem.sellIn < 11) {
-                            if (currentItem.quality < 50) {
-                                currentItem.quality = currentItem.quality + 1
-                            }
-                        }
-                        if (currentItem.sellIn < 6) {
-                            if (currentItem.quality < 50) {
-                                currentItem.quality = currentItem.quality + 1
-                            }
-                        }
-                    }
-                }
-            }
+        for (const currentItem of this.items) {
 
             // Reduce sell-by date of all items except for Sulfuras.
             if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
                 currentItem.sellIn -= 1;
             }
 
-            if (currentItem.sellIn < 0) {
-                if (currentItem.name != 'Aged Brie') {
-                    if (currentItem.name != 'Backstage passes to a TAFKAL80ETC concert') {
-                        if (currentItem.quality > 0) {
-                            if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
-                                currentItem.quality = currentItem.quality - 1
-                            }
-                        }
-                    } else {
-                        currentItem.quality = currentItem.quality - currentItem.quality
-                    }
-                } else {
-                    if (currentItem.quality < 50) {
-                        currentItem.quality = currentItem.quality + 1
-                    }
-                }
+            if (currentItem.name == 'Aged Brie') {
+                currentItem.quality++;
+            } else if (currentItem.name == 'Backstage passes to a TAFKAL80ETC concert') {
+                if (currentItem.sellIn > 10)
+                    currentItem.quality += 1;
+                else if (currentItem.sellIn > 5)
+                    currentItem.quality += 2;
+                else if  (currentItem.sellIn > 0)
+                    currentItem.quality += 3;
+                else
+                    currentItem.quality = 0;
+
+            } else if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
+                currentItem.quality -= (currentItem.sellIn < 0) ? 2 : 1;
             }
             
             if (currentItem.quality < 0) // Min quality is 0.
