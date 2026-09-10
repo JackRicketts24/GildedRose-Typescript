@@ -39,6 +39,8 @@ export class GildedRose {
                 else
                     currentItem.quality = 0;
 
+            } else if (currentItem.name == 'Conjured Mana Cake') {
+                currentItem.quality -= 2;
             } else if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
                 currentItem.quality -= (currentItem.sellIn < 0) ? 2 : 1;
             }
