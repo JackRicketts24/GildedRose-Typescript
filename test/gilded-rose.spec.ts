@@ -74,4 +74,10 @@ describe('Gilded Rose', function () {
         const items = gildedRose.updateQuality();
         expect(items[0].quality).to.equal(23); 
     });
+
+    it('conjured items quality decreases by 2', function() {
+        const gildedRose = new GildedRose([ new Item('Conjured Mana Cake', 3, 20) ]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).to.equal(18); 
+    });
 });
