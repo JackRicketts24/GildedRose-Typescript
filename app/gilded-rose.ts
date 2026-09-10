@@ -25,21 +25,21 @@ export class GildedRose {
             if (currentItem.name != 'Aged Brie' && currentItem.name != 'Backstage passes to a TAFKAL80ETC concert') {
                 if (currentItem.quality > 0) {
                     if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
-                        currentItem.quality = currentItem.quality - 1
+                        currentItem.quality--;
                     }
                 }
             } else {
                 if (currentItem.quality < 50) {
-                    currentItem.quality = currentItem.quality + 1
+                    currentItem.quality++;
                     if (currentItem.name == 'Backstage passes to a TAFKAL80ETC concert') {
                         if (currentItem.sellIn < 11) {
                             if (currentItem.quality < 50) {
-                                currentItem.quality = currentItem.quality + 1
+                                currentItem.quality++;
                             }
                         }
                         if (currentItem.sellIn < 6) {
                             if (currentItem.quality < 50) {
-                                currentItem.quality = currentItem.quality + 1
+                                currentItem.quality++;
                             }
                         }
                     }
@@ -56,15 +56,15 @@ export class GildedRose {
                     if (currentItem.name != 'Backstage passes to a TAFKAL80ETC concert') {
                         if (currentItem.quality > 0) {
                             if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
-                                currentItem.quality = currentItem.quality - 1
+                                currentItem.quality--;
                             }
                         }
                     } else {
-                        currentItem.quality = currentItem.quality - currentItem.quality
+                        currentItem.quality = 0
                     }
                 } else {
                     if (currentItem.quality < 50) {
-                        currentItem.quality = currentItem.quality + 1
+                        currentItem.quality++;
                     }
                 }
             }
