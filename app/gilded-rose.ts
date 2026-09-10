@@ -22,6 +22,17 @@ export class GildedRose {
 
         for (const currentItem of this.items) {
 
+            // Reduce sell-by date of all items except for Sulfuras.
+            if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
+                currentItem.sellIn -= 1;
+            }
+
+            if (currentItem.name == 'Aged Brie') {
+                currentItem.quality++;
+            } else if (currentItem.name == 'Backstage passes to a TAFKAL80ETC concert') {
+                // Ran out of time before meeting. Saving progress.
+            }
+
             if (currentItem.name != 'Aged Brie' && currentItem.name != 'Backstage passes to a TAFKAL80ETC concert' && currentItem.name != 'Sulfuras, Hand of Ragnaros') {
                 currentItem.quality--;
 
@@ -37,10 +48,6 @@ export class GildedRose {
                 }
             }
             
-            // Reduce sell-by date of all items except for Sulfuras.
-            if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
-                currentItem.sellIn -= 1;
-            }
 
             if (currentItem.sellIn < 0) {
                 if (currentItem.name != 'Aged Brie') {
