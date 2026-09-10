@@ -30,37 +30,17 @@ export class GildedRose {
             if (currentItem.name == 'Aged Brie') {
                 currentItem.quality++;
             } else if (currentItem.name == 'Backstage passes to a TAFKAL80ETC concert') {
-                // Ran out of time before meeting. Saving progress.
-            }
+                if (currentItem.sellIn > 10)
+                    currentItem.quality += 1;
+                else if (currentItem.sellIn > 5)
+                    currentItem.quality += 2;
+                else if  (currentItem.sellIn > 0)
+                    currentItem.quality += 3;
+                else
+                    currentItem.quality = 0;
 
-            if (currentItem.name != 'Aged Brie' && currentItem.name != 'Backstage passes to a TAFKAL80ETC concert' && currentItem.name != 'Sulfuras, Hand of Ragnaros') {
-                currentItem.quality--;
-
-            } else {
-                currentItem.quality++;
-                if (currentItem.name == 'Backstage passes to a TAFKAL80ETC concert') {
-                    if (currentItem.sellIn < 11) {
-                        currentItem.quality++;
-                    }
-                    if (currentItem.sellIn < 6) {
-                        currentItem.quality++;
-                    }
-                }
-            }
-            
-
-            if (currentItem.sellIn < 0) {
-                if (currentItem.name != 'Aged Brie') {
-                    if (currentItem.name != 'Backstage passes to a TAFKAL80ETC concert') {
-                        if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
-                            currentItem.quality--;
-                        }
-                    } else {
-                        currentItem.quality = 0
-                    }
-                } else {
-                    currentItem.quality++;
-                }
+            } else if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
+                currentItem.quality -= (currentItem.sellIn < 0) ? 2 : 1;
             }
             
             if (currentItem.quality < 0) // Min quality is 0.
